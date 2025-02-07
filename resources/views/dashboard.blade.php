@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="prose hero bg-base-200 mx-auto max-w-full rounded">
-        <div class="hero-content text-center my-10">
-            <div class="max-w-md mb-10">
-                <h2>Welcome to the Microposts</h2>
-                {{-- ユーザー登録ページへのリンク --}}
-                <a class="btn btn-primary btn-lg normal-case" href="{{ route('register') }}">Sign up now!</a>
-            </div>
+    <div class="py-4 px-8 flex items-center justify-between">
+        @include('search.search_form')
+        @include('search.fillter')
+    </div>
+    <div class="grid grid-cols-5 gap-4 prose hero mx-auto max-w-full rounded px-8">
+        <div class="col-span-4 w-full pr-8">
+        @include('news.news')
+        </div>
+        <div class="col-span-1">
+        @include('favorite_news.favorite_news')
         </div>
     </div>
 @endsection
