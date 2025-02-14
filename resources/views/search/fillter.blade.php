@@ -6,6 +6,6 @@
         <option value="this_month" {{ request('filter_date') == 'this_month' ? 'selected' : '' }}>今月</option>
     </select>
 
-    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700" type="submit">フィルター</button>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700" type="submit">フィルタ</button>
     <a class="px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white" href="{{ route('news.index') }}">削除</a>
 </form>

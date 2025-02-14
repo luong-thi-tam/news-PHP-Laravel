@@ -10,7 +10,7 @@
             <div class="flex flex-col justify-center">
                 {{-- 投稿の所有者のユーザー詳細ページへのリンク --}}
                 <a class="link link-hover text-info" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a>
-                <span class="text-muted text-gray-500">投稿者： {{ $new->author }}</span>
+                <span class="text-muted text-gray-500">著者： {{ $new->author }}</span>
                 <span class="text-muted text-gray-500">投稿日： {{ $new->created_at->format('Y-m-d') }}</span>
             </div>
 

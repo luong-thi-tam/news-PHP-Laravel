@@ -6,7 +6,7 @@
         @include('search.fillter')
     </div>
     <div class="grid grid-cols-5 gap-4 prose hero mx-auto max-w-full rounded px-8">
-        <div class="col-span-4 w-full pr-8">
+        <div class="col-span-4 w-full h-fill pr-8">
         @include('news.news')
         </div>
         <div class="col-span-1">

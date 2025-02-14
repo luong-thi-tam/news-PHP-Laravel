@@ -39,11 +39,19 @@ class NewsController extends Controller
             ->take(3)
             ->get();
 
-        $news = $query->paginate(4);
+        $news = $query->latest()->paginate(4);
 
         return view('dashboard', [
             'news' => $news,
             'favorites' => $favorites,
+        ]);
+    }
+
+    public function indexAdmin()
+    {
+        $news = News::orderBy('id', 'asc')->paginate(10);
+        return view('admin', [
+            'news' => $news,
         ]);
     }
 
@@ -61,4 +69,85 @@ class NewsController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function showAdmin($id)
+    {
+        $news = News::findOrFail($id);
+        $comments = $news->comments()->orderBy('created_at', 'desc')->paginate(10);
+
+        // ユーザー詳細ビューでそれを表示
+        return view('admin.show', [
+            'news' => $news,
+        ]);
+    }
+
+    public function create()
+    {
+        $news = new News();
+
+        return view('admin.create', [
+            'news' => $news,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'content' => 'required|max:255',
+        ]);
+
+        $image = "";
+        if($request->image){
+            $image = $request->image;
+        }
+
+        News ::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'content' => $request->content,
+            'image' => $request->image, 
+        ]);
+
+        return redirect('/admin');
+    }
+
+    public function edit(string $id)
+    {
+        $news = News::findOrFail($id);
+
+        return view('admin.edit', [
+            'news' => $news,
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'image' => 'required|max:255',
+            'content' => 'required|max:255',
+        ]);
+        $news = News::findOrFail($id);
+
+            $news->update($validated);
+            return redirect('/admin')
+                ->with('success','Update Successful');
+    }
+
+    public function destroy(string $id)
+    {
+        $news = News::findOrFail($id);
+
+        $news->delete();
+        return redirect('/admin')
+            ->with('success', 'Delete Successful');
+    }
+
+
 }

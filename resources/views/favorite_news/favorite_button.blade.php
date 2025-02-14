@@ -5,7 +5,7 @@
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-error btn-sm normal-case">
-            <i class="fas fa-heart"></i> お気に入りを解除
+            <i class="fas fa-heart"></i> お気に入りを削除
         </button>
     </form>
     @else

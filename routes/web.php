@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // });
 
+Route::get('/admin', [NewsController::class, 'indexAdmin']);
+
+Route::resource('/admin', NewsController::class, ['only' => ['create', 'store', 'edit', 'destroy', 'update']]);
+
+Route::get('/admin/showAdmin/{id}', [NewsController::class, 'showAdmin'])->name('admin.showAdmin');
+
 Route::get('/', [NewsController::class, 'index']);
 
 Route::get('/dashboard', [NewsController::class, 'index']);

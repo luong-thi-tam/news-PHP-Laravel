@@ -9,7 +9,7 @@ class News extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'author', 'content'];
+    protected $fillable = ['title', 'author', 'content', 'image'];
 
     public function loadRelationshipCounts()
     {

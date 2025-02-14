@@ -41,7 +41,7 @@
             <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 btn-block normal-case text-white">新規登録</button>
 
             {{-- ユーザー登録ページへのリンク --}}
-            <p class="mt-2">アカウントをお持ちですか？ <a class="link link-hover text-info" href="{{ route('register') }}">今すぐログインしてください！</a></p>
+            <p class="mt-2">アカウントをお持ちですか？ <a class="link link-hover text-info" href="{{ route('login') }}">今すぐログインしてください！</a></p>
         </form>
     </div>
 @endsection
